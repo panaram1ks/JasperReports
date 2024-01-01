@@ -1,8 +1,10 @@
 package com.infybuzz.report;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.base.JRBaseTextField;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +23,7 @@ public class FirstReport {
             Student student1 = new Student(1L, "Raj", "Joshi", "Happy Street",
                     "Delhi");
 
-            Student student2 = new Student(1L, "Peter", "Smith", "Any Street",
+            Student student2 = new Student(2L, "Peter", "Smith", "Any Street",
                     "Mumbai");
 
             List<Student> list = new ArrayList<Student>();
@@ -31,6 +33,11 @@ public class FirstReport {
             JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(list);
 
             JasperReport report = JasperCompileManager.compileReport(filePath);
+
+            // change style of fields in Java
+            JRBaseTextField textField = (JRBaseTextField) report.getTitle().getElementByKey("nameId1");
+            textField.setForecolor(Color.RED);
+
 
             JasperPrint print = JasperFillManager.fillReport(report, parameters, dataSource);
 
