@@ -48,6 +48,7 @@ public class CustomReport {
             // add sub-report
             parameters.put("subReport", getSubReport());
             parameters.put("subDataSource", getSubDataResource());
+            parameters.put("subParameters", getSubReportParameters());
 
 
             // compile reportTemplate
@@ -102,6 +103,12 @@ public class CustomReport {
 
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(list);
         return dataSource;
+    }
+
+    public static Map<String, Object> getSubReportParameters() {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("studentName", "John Smith");
+        return parameters;
     }
 
 
