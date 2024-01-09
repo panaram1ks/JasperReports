@@ -45,6 +45,10 @@ public class CustomReport {
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("studentName", "John Little");
             parameters.put("tableData", dataSource);
+            // add sub-report
+            parameters.put("subReport", getSubReport());
+            parameters.put("subDataSource", getSubDataResource());
+
 
             // compile reportTemplate
             JasperReport report = JasperCompileManager.compileReport(filePath);
@@ -72,4 +76,33 @@ public class CustomReport {
             System.out.println(e);
         }
     }
+
+    public static JasperReport getSubReport() {
+        String filePath = "/home/parom/IdeaProjects/JasperReports/Setting-up-Fields-For-Table-Data/src/main/resources/FirstReport.jrxml";
+        JasperReport report = null;
+        try {
+            report = JasperCompileManager.compileReport(filePath);
+            return report;
+        } catch (JRException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static JRBeanCollectionDataSource getSubDataResource() {
+        Student student1 = new Student(1L, "Raj", "Joshi", "Happy Street",
+                "Delhi");
+
+        Student student2 = new Student(2L, "Peter", "Smith", "Any Street",
+                "Mumbai");
+
+        List<Student> list = new ArrayList<Student>();
+        list.add(student1);
+        list.add(student2);
+
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(list);
+        return dataSource;
+    }
+
+
 }
