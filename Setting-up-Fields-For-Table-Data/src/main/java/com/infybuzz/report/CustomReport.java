@@ -50,6 +50,8 @@ public class CustomReport {
             // Export to necessary format
             JasperExportManager.exportReportToPdfFile(print, "/home/parom/IdeaProjects/JasperReports/Setting-up-Fields-For-Table-Data/src/main/resources/studRep.pdf");
 
+            JasperExportManager.exportReportToHtmlFile(print, "/home/parom/IdeaProjects/JasperReports/Setting-up-Fields-For-Table-Data/src/main/resources/studRep.html");
+
             System.out.println("Report Create...");
 
         } catch (Exception e) {
