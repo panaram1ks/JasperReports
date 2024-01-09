@@ -33,6 +33,8 @@ public class CustomReport {
             // create DateSource
             JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(list);
 
+            JRBeanCollectionDataSource chartDataSource = new JRBeanCollectionDataSource(list);
+
             // create Parameters
             Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("studentName", "John Little");
@@ -42,7 +44,8 @@ public class CustomReport {
             JasperReport report = JasperCompileManager.compileReport(filePath);
 
             // filling the Template
-            JasperPrint print = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
+//            JasperPrint print = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
+            JasperPrint print = JasperFillManager.fillReport(report, parameters, chartDataSource);
 
             // Export to necessary format
             JasperExportManager.exportReportToPdfFile(print, "/home/parom/IdeaProjects/JasperReports/Setting-up-Fields-For-Table-Data/src/main/resources/studRep.pdf");

@@ -45,6 +45,8 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="subjectName" class="java.lang.String"/>
+	<field name="marksObtained" class="java.lang.Long"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -65,12 +67,19 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="18" width="555" height="2" uuid="c85ab974-6481-4df6-9636-0f45e7a8feb8"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
 	</pageHeader>
 	<detail>
-		<band height="344" splitType="Stretch">
+		<band height="499" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="0" width="555" height="344" uuid="d56341a9-e9d4-4bea-aca6-95e7d768dc21">
+				<reportElement x="0" y="0" width="555" height="460" uuid="d56341a9-e9d4-4bea-aca6-95e7d768dc21">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -134,12 +143,54 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="170" width="210" height="260" uuid="7d8cb7e9-329e-4ffe-8d6f-278e23836efa"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{subjectName}]]></keyExpression>
+					<valueExpression><![CDATA[$F{marksObtained}]]></valueExpression>
+					<labelExpression><![CDATA["" + $F{marksObtained}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="240" y="160" width="300" height="260" uuid="fc4b32ab-8120-43f3-b15f-9143b15cd5b0"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{subjectName}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[$F{marksObtained}]]></valueExpression>
+						<labelExpression><![CDATA[$F{subjectName}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="25" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
